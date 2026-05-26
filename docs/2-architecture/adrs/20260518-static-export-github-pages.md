@@ -55,5 +55,5 @@ Chosen option: **Option 2: Exportación Estática Completa**, porque cumple al 1
 
 ## Links
 
-- [DevOps infrastructure context](../../../context.md#%EF%B8%8F-devops-y-herramientas)
-- [DevOps guidelines](../../../documentacion-old/devops.md)
+- [DevOps infrastructure context](../../../.vitacoras-contexto/context.md#%EF%B8%8F-devops-y-herramientas)
+- [DevOps guidelines](../../despliegue-github-pages.md)

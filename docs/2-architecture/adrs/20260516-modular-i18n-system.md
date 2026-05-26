@@ -63,5 +63,5 @@ Chosen option: **Option 3: Arquitectura i18n modular a medida**, porque es perfe
 
 ## Links
 
-- [Documentation dictionaries.md](../../../documentacion-old/dictionaries.md)
-- [Documentation t.md](../../../documentacion-old/t.md)
+- [Modular i18n Resolution and Fallbacks](../../4-modules/site/use-cases/uc-site-01-resolve-modular-i18n.md)
+- [Global Process: i18n Update](../../3-global-processes/gp-02-i18n-update.md)

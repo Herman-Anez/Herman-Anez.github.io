@@ -61,6 +61,6 @@ Chosen option: **Option 2: Adopción del Patrón MVVM-C con Coordinadores**, por
 
 ## Links
 
-- [MVVM-C Bitácora](../../../mvvmc-vitacora.md)
-- [Arquitectura General](../../arquitectura-y-patrones.md)
-- [Estructura de Directorios](../../src-structure.md)
+- [MVVM-C Bitácora](../../../.vitacoras-contexto/mvvmc-vitacora.md)
+- [Arquitectura General](../arquitectura-y-patrones.md)
+- [Estructura de Directorios](../src-structure.md)

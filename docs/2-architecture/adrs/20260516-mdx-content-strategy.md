@@ -52,5 +52,5 @@ Chosen option: **Option 2: Unificación en Archivo Único Multi-idioma con Inyec
 
 ## Links
 
-- [Documentation dictionaries.md](../../../documentacion-old/dictionaries.md)
-- [Unified content strategy context](../../../context.md#%EF%B8%8F-contenido-mdx)
+- [Global Process: Content Publication](../../3-global-processes/gp-01-content-publication.md)
+- [Unified content strategy context](../../../.vitacoras-contexto/context.md#%EF%B8%8F-contenido-mdx)

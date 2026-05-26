@@ -58,4 +58,4 @@ Chosen option: **Option 3: Once UI**, porque proporciona de inmediato la estéti
 
 ## Links
 
-- [Once UI Development Rules](../../../AGENTS.md)
+- [Once UI Development Rules](../../1-standards/coding-conventions.md)

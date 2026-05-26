@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-Record of architectural decisions for {{PROJECT_NAME}}. Each ADR documents a significant decision, its context, considered alternatives, and consequences.
+Record of architectural decisions for Herman's Personal Page. Each ADR documents a significant decision, its context, considered alternatives, and consequences.
 
 ## Active ADRs
 

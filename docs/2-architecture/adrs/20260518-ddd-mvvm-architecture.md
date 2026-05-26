@@ -55,5 +55,5 @@ Chosen option: **Option 2: Clean Architecture con DDD + MVVM**, porque ofrece el
 
 ## Links
 
-- [Project Architecture context](../../../context.md#%EF%B8%8F-stack-y-arquitectura)
-- [Architecture diagram](../../arquitectura-y-patrones.md)
+- [Project Architecture context](../../../.vitacoras-contexto/context.md#%EF%B8%8F-stack-y-arquitectura)
+- [Architecture diagram](../arquitectura-y-patrones.md)
