@@ -126,10 +126,20 @@ ViewModel (construye estado visual desde DTOs de Aplicación)
 View Component (renderiza JSX puro)
 ```
 
+**Estrategia de renderizado: 100% SSG (`output: 'export'`)**
+
+El sitio se compila completamente de forma estática — sin servidor Node.js en runtime. Cada `page.tsx` declara `generateStaticParams()` que pre-genera exhaustivamente todas las combinaciones de `locale × slug` en build-time. El resultado es una carpeta `out/` de HTML/CSS/JS puros desplegables en cualquier CDN estática (GitHub Pages).
+
+Implicaciones:
+- Sin API routes dinámicas en runtime
+- Sin ISR (Incremental Static Regeneration)
+- Sin middleware de Next.js (incompatible con `output: 'export'`)
+- Protección de páginas: solo lado cliente via `localStorage` + `NEXT_PUBLIC_*`
+
 **Rol de cada sub-capa:**
 | Sub-capa | Responsabilidad |
 |----------|----------------|
-| `page.tsx` | Recibe params de Next.js, delega al Coordinator, genera metadata SEO |
+| `page.tsx` | Recibe params, declara `generateStaticParams()`, delega al Coordinator, genera metadata SEO |
 | Coordinator | Instancia el Caso de Uso con el repositorio correcto, decide flujo visual |
 | ViewModel | Transforma DTOs en estado visual listo para renderizar |
 | View Component | Renderiza JSX puro, sin lógica de negocio |

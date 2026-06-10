@@ -44,34 +44,45 @@ Avoid unnecessarily switching between both languages within the same sentence or
 
 ```text
 docs/
-|-- 1-standards/
-|-- 2-architecture/
-|-- 3-global-processes/
-|-- 4-modules/
-|-- 5-events/
-|-- readme.md
-`-- requirements-index.md
+|-- 0-captura-de-requerimientos/  # Descripción formal, RF, RNF, restricciones.
+|-- 1-architecture/               # Hexagonal/DDD, bounded contexts, quality, ADRs.
+|-- 2-standards/                  # Convenciones de código, Git, guía de documentación.
+|-- 3-global-processes/           # Procesos cross-BC (publicación MDX, i18n).
+|-- 4-bounded-contexts/           # Especificaciones por BC: blog, portfolio, profile, site.
+|-- readme.md                     # Portal central de entrada.
+`-- README.md                     # Índice navegable principal.
 ```
 
-## Recommended structure per module
+## Recommended structure per bounded context
 
-Each bounded context should follow this structure:
+Each bounded context follows the pattern `4-bounded-contexts/[bc]/[module]/`:
 
 ```text
-docs/4-modules/[bounded-context]/
-|-- readme.md
-|-- requirements.md
-|-- domain-model.md
-|-- api-spec.md
-|-- use-cases/
-|   `-- index.md
-|-- endpoints/                # only if the module exposes relevant endpoints
-|   `-- [endpoint-name].md
-|-- architecture/             # only if the module needs additional detail
-|   |-- quality-attributes.md
-|   |-- infrastructure.md
-|   `-- c4-model/
-`-- integration-events.md     # if the module publishes or consumes events
+docs/4-bounded-contexts/[bounded-context]/[module]/
+|-- README.md
+`-- use-cases/
+    |-- index.md
+    `-- uc-[bc]-[nn]-[slug].md
+```
+
+Ejemplo real:
+```text
+4-bounded-contexts/
+|-- blog/
+|   `-- articles/
+|       |-- README.md
+|       `-- use-cases/
+|           |-- index.md
+|           `-- uc-blog-01-list-posts.md
+|-- portfolio/
+|   `-- projects/
+|-- profile/
+|   `-- developer/
+`-- site/
+    |-- home/
+    |   `-- use-cases/
+    `-- about/
+        `-- use-cases/
 ```
 
 ## What each document should answer

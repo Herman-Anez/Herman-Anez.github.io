@@ -47,9 +47,10 @@ Para incorporarse o auditar el proyecto, te sugerimos seguir este orden:
 2. [Global Requirements](./requirements-index.md) — Requisitos de negocio, i18n y exportación estática.
 3. [Architecture and Patterns](./2-architecture/arquitectura-y-patrones.md) — Capas del monorepo y MVVM.
 4. [ADR Index](./2-architecture/adrs/index.md) — Decisiones de diseño histórico aceptadas.
-5. Módulos de Negocio en `/docs/4-modules/` (comenzando por `blog`).
+5. Bounded Contexts en `/docs/4-bounded-contexts/` (comenzando por `blog/articles`).
 
 ---
+
 
 ## 📂 Documentation Directory Layout
 
@@ -58,7 +59,7 @@ docs/
 |-- 1-standards/         # Estándares de código, Biome, Git Husky y Mermaid templates.
 |-- 2-architecture/      # Visión de arquitectura, calidad, compilación offline y ADRs.
 |-- 3-global-processes/  # Procesos que involucran a múltiples módulos (publicación, i18n).
-|-- 4-modules/           # Especificaciones detalladas por contexto acotado (blog, work, about, site).
+|-- 4-bounded-contexts/  # Especificaciones por bounded context: blog/articles, portfolio/projects, profile/developer, site.
 |-- 5-events/            # Contratos de eventos y navegación estática localizada.
 |-- readme.md            # Portal central de entrada.
 `-- requirements-index.md # Índice global de requisitos del sistema.
@@ -68,12 +69,12 @@ docs/
 
 ## 📦 Active Business Modules
 
-| Module | Core Bounded Context | Status |
+| Bounded Context / Module | Core Responsibility | Status |
 |---|---|---|
-| **[site](./4-modules/site/readme.md)** | Configuración transversal, sitemap, layouts semánticos de Once UI y resolución modular de i18n. | En producción |
-| **[blog](./4-modules/blog/readme.md)** | Indexación MDX, taxonomía, tiempo de lectura, sindicación RSS y Open Graph dinámico. | En producción |
-| **[work](./4-modules/work/readme.md)** | Casos de estudio de proyectos, experiencia comercial y tecnologías asociadas. | Documentación legacy activa |
-| **[about](./4-modules/about/readme.md)** | Biografía profesional bilingüe, perfil técnico y galería fotográfica. | Documentación legacy activa |
+| **[site](./4-bounded-contexts/site/README.md)** | Orquestador — Home, About, composición de BCs, SEO global. | En producción |
+| **[blog / articles](./4-bounded-contexts/blog/articles/README.md)** | Indexación MDX, taxonomía, tiempo de lectura, sindicación RSS y Open Graph dinámico. | En producción |
+| **[portfolio / projects](./4-bounded-contexts/portfolio/projects/README.md)** | Casos de estudio con AccessPolicy, proyectos públicos y protegidos. | En producción |
+| **[profile / developer](./4-bounded-contexts/profile/developer/README.md)** | Biografía profesional bilingüe, perfil técnico y galería fotográfica. | En producción |
 
 ---
 

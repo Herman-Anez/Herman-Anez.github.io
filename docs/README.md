@@ -19,6 +19,7 @@
 ### 2. Estándares
 - [Convenciones de Código](./2-standards/coding-conventions.md) — Naming, capas, Biome, TypeScript
 - [Flujo Git y CI/CD](./2-standards/git-workflow.md) — Branches, commits, Husky, GitHub Actions
+- [Git Subtree — Paquetes Internos](./2-standards/git-subtree-packages.md) — Setup, sync y workflow diario con repos externos
 - [Guía de Documentación](./2-standards/documentation-guidelines.md) — Cómo escribir docs en este proyecto
 - [Templates](./2-standards/templates/) — Plantillas de use case, module readme, ADR
 
@@ -26,11 +27,12 @@
 - [GP-01: Publicación de Contenido MDX](./3-global-processes/gp-01-content-publication.md) — Ciclo de vida de un post/proyecto
 - [GP-02: Actualización de Traducciones i18n](./3-global-processes/gp-02-i18n-update.md) — Agregar/modificar claves de traducción
 
-### 4. Módulos
-- [Blog](./4-modules/blog/) — Casos de uso, dominio, infraestructura
-- [Portfolio](./4-modules/portfolio/) — Casos de uso, dominio, infraestructura
-- [Profile](./4-modules/profile/) — Casos de uso, dominio, infraestructura
-- [Site](./4-modules/site/) — Composición, Home, About
+### 4. Bounded Contexts
+- [Blog / Articles](./4-bounded-contexts/blog/articles/) — Casos de uso, dominio, infraestructura
+- [Portfolio / Projects](./4-bounded-contexts/portfolio/projects/) — Casos de uso, dominio, infraestructura
+- [Profile / Developer](./4-bounded-contexts/profile/developer/) — Casos de uso, dominio, infraestructura
+- [Site / Home](./4-bounded-contexts/site/home/) — Página principal y composición
+- [Site / About](./4-bounded-contexts/site/about/) — Página de perfil profesional
 
 ---
 
@@ -47,11 +49,11 @@
 | Flujo Git | Activo |
 | GP-01 Publicación | Activo |
 | GP-02 i18n | Activo |
-| Use Cases Blog (x3) | Activos |
-| Use Cases Portfolio | Pendiente |
-| Use Cases Profile | Pendiente |
-| Use Cases Site | Pendiente |
-| Module READMEs (blog, portfolio, profile, site) | Pendiente |
+| Use Cases Blog (x4) | Activos |
+| Use Cases Portfolio (x3) | Activos |
+| Use Cases Profile (x1) | Activo |
+| Use Cases Site (x2) | Activos |
+| BC READMEs (blog/articles, portfolio/projects, profile/developer, site) | Activos |
 
 ---
 

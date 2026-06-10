@@ -9,7 +9,7 @@
 
 ## 1. Preconditions
 
-- El visitante navega a una ruta de blog bilingüe válida (`/[locale]/blog` o `/[locale]/[slug-localizado-blog]`).
+- La ruta `/[locale]/blog` está pre-generada en build-time via `generateStaticParams()` (SSG, `output: 'export'`).
 - Existen archivos `.mdx` válidos con frontmatter correcto en `src/proto-pages/blog/posts/`.
 
 ---

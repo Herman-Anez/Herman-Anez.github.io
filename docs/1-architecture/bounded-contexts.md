@@ -26,11 +26,11 @@
                    │ consume (Customer/Supplier)
           ┌────────▼────────┐
           │   BC: Site      │
-          │                 │
-          │  HomePage (AR)  │
-          │  (agrega Blog   │
+          │  (orquestador)  │
+          │  sin entidades  │
+          │  agrega Blog    │
           │  + Portfolio    │
-          │  + Profile)     │
+          │  + Profile      │
           └────────┬────────┘
                    │
           ┌────────▼────────┐
@@ -459,6 +459,8 @@ interface AboutPageDTO {
 | `blog-post` | `blog/{slug}` | `blog/{slug}` | Artículo individual |
 | `portfolio` | `portafolio` | `portfolio` | Listado de proyectos |
 | `portfolio-detail` | `portafolio/{slug}` | `portfolio/{slug}` | Detalle de proyecto |
+
+> **Nota:** Los pageIds `portfolio` y `portfolio-detail` corresponden al estado objetivo (v2). El código actual (v1) usa `work` y `work-detail` — migrar al registrar en `PageRouter.ts`.
 | `gallery` | `galeria` | `gallery` | Galería de fotos |
 
 ### 7.2 Contrato de `PageRouter`
