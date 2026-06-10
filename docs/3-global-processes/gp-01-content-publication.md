@@ -1,20 +1,21 @@
 # Global Process 01: Publicación de Contenidos Técnicos (MDX)
 
-## 🎯 Objective
+## Objective
 
-Describir el flujo transversal de extremo a extremo que realiza el Autor para redactar, validar de forma automatizada, compilar sin dependencias de red y desplegar un nuevo artículo de blog o proyecto de portafolio comercial en producción.
-
----
-
-## 🏛️ Participating Modules
-
-- **`blog` / `work`**: Módulos dueños de la información. Almacenan los archivos `.mdx` físicos y exponen el frontmatter a través de los adaptadores de infraestructura correspondientes.
-- **`site`**: Módulo integrador. Consume el contenido formateado por el ViewModel e inyecta la estructura visual de Once UI, autogenerando el `sitemap.xml` bilingüe en compilación.
-- **`shared` (DevOps)**: Pipeline de compilación y calidad. Provee los Git Hooks (Husky, lint-staged), el validador Biome, y gestiona el flujo de integración continua (CI/CD) de GitHub Actions hacia la CDN.
+Describir el flujo transversal de extremo a extremo que realiza el Autor para redactar, validar de forma automatizada, compilar sin dependencias de red y desplegar un nuevo artículo de blog o proyecto de portafolio en producción.
 
 ---
 
-## 📊 Sequence Diagram (Build & Deploy Flow)
+## Participating Layers
+
+- **Infraestructura** (`src/infrastructure/blog/`, `src/infrastructure/portfolio/`): Lee los archivos `.mdx` del filesystem y construye entidades del dominio a través de los adaptadores de repositorio (`MdxBlogRepository`, `MdxProjectRepository`).
+- **Aplicación** (`src/application/blog/`, `src/application/portfolio/`): Los Casos de Uso (`GetBlogListUseCase`, `GetBlogPostUseCase`, etc.) orquestan la consulta y devuelven DTOs listos para la presentación.
+- **Presentación / MVVM-C** (`src/presentation/`): Los Coordinators instancian los Casos de Uso con los repositorios correctos. Los ViewModels transforman DTOs en estado visual para los View Components.
+- **DevOps / Shared**: Pipeline de compilación y calidad — Git Hooks (Husky, lint-staged), Biome, y CI/CD de GitHub Actions hacia la CDN.
+
+---
+
+## Sequence Diagram (Build & Deploy Flow)
 
 ```mermaid
 sequenceDiagram
@@ -25,66 +26,89 @@ sequenceDiagram
     participant github as GitHub Actions (CI)
     participant cdn as CDN (GitHub Pages)
 
-    Autor->>local: Crea src/proto-pages/blog/posts/un-post.mdx con metadatos YAML
+    Autor->>local: Crea src/proto-pages/blog/posts/un-post.mdx con frontmatter YAML
     Autor->>local: Define slugs localizados en frontmatter (slugs: { es: "mi-url", en: "my-url" })
-    Autor->>local: Agrega interpolaciones bilingües {d.blog.key}
+    Autor->>local: Usa <T es="..." en="..." /> para contenido bilingüe inline en MDX
     Autor->>local: Ejecuta git commit -m "feat: new post"
-    
+
     local->>git: Intercepta commit (pre-commit hook)
     git->>git: Ejecuta Biome (Format & Linter check)
-    git->>git: Corre validate-i18n.ts (Verifica simetría JSON)
-    git->>git: Corre test-i18n.ts (Unit tests en verde)
-    
+    git->>git: Corre validate-i18n.ts (Verifica simetría de claves JSON ES/EN)
+    git->>git: Corre test-i18n.ts (Unit tests de resolución y fallbacks)
+
     alt Fallos de formato o simetría
-        git-->>Autor: Rechaza commit con error (Abort)
+        git-->>Autor: Rechaza commit con error detallado (Abort)
     else Calidad Exitosa
-        git-->>local: Aprueba commit y realiza Push a rama main
+        git-->>local: Aprueba commit
+        local->>github: Push dispara GitHub Actions
     end
 
-    local->>github: Dispara GitHub Actions en Push
-    github->>github: Descarga node_modules y compila estáticamente (npm run build)
-    github->>github: Procesa MDX, calcula ReadingTime, genera RSS, Sitemap y OG images
-    github->>cdn: Exporta bundle físico (output: 'export') y despliega
-    cdn-->>Autor: Contenido visible globalmente en sub-50ms (Uptime 100%)
+    github->>github: Instala dependencias, compila @herman/i18n (postinstall)
+    github->>github: Ejecuta prebuild: generate-rss.ts → escribe rss-es.xml, rss-en.xml en public/
+    github->>github: npm run build: Next.js genera HTML estático de todas las rutas
+    github->>github: MdxBlogRepository escanea .mdx, SlugRegistry indexa slugs localizados
+    github->>github: generateStaticParams() pre-genera todas las combinaciones locale × slug
+    github->>cdn: Exporta bundle físico (output: export) y despliega en GitHub Pages
+    cdn-->>Autor: Contenido visible globalmente (sub-50ms TTFB)
 ```
 
 ---
 
-## 📋 Main Flow (Paso a Paso)
+## Main Flow (Paso a Paso)
 
-### 1. Redacción Física del Artículo
-- **Actor:** Autor (Herman)
-- **Módulo:** `blog` o `work`
-- **Acción:** Creación física del archivo `.mdx` en `src/proto-pages/blog/posts/` (blog) o `src/proto-pages/work/projects/` (work). Se definen las metadatos obligatorios en el frontmatter (invariante: `title`, `summary`, `publishedAt`, al menos un `tag`) y el campo de slugs localizados:
+### 1. Redacción del Artículo
+
+- **Actor:** Autor
+- **Ubicación:** `src/proto-pages/blog/posts/` (blog) o `src/proto-pages/work/projects/` (portfolio)
+- **Frontmatter obligatorio:**
   ```yaml
+  ---
+  title:
+    es: "Mi Artículo"
+    en: "My Article"
+  description:
+    es: "Descripción"
+    en: "Description"
+  publishedAt: "2026-06-10"
+  tags: ["typescript", "ddd"]
+  featured: false
   slugs:
-    es: "mi-articulo-en-espanol"
-    en: "my-article-in-english"
+    es: "mi-articulo"
+    en: "my-article"
+  ---
   ```
-  Si el campo `slugs` se omite, el nombre del archivo actúa como slug universal (retrocompatibilidad).
+- Si `slugs` se omite, el nombre del archivo actúa como slug universal (retrocompatibilidad).
+- Contenido bilingüe inline: `<T es="Ver más" en="See more" />`
 
-### 2. Formateo y Verificación Local
-- **Actor:** Husky (Git Hook)
-- **Módulo:** `shared` (DevOps)
-- **Acción:** Al realizar commit, `lint-staged` corre Biome para uniformar el formato (2 espacios). De forma inmediata, el script `validate-i18n.ts` verifica que los diccionarios idiomáticos mantengan la misma estructura simétrica en sus namespaces bilingües.
+### 2. Validación Local (pre-commit)
 
-### 3. Compilación Estática y Offline (`npm run build`)
+- **Actor:** Husky + lint-staged
+- `biome format --write` sobre archivos modificados.
+- `validate-i18n.ts`: verifica simetría de claves entre `lang/es/` y `lang/en/`.
+- `test-i18n.ts`: unit tests de `getDictionary`, `resolveKey`, `getNestedValue` del paquete `@herman/i18n`.
+- Si cualquier check falla → commit abortado con mensaje de error.
+
+### 3. Compilación Estática (`npm run build`)
+
 - **Actor:** GitHub Actions Runner
-- **Módulo:** `site` / `shared`
-- **Acción:** Next.js pre-compila el monorepo sin requerir llamadas dinámicas HTTP de red externa.
-  - El motor MDX procesa los artículos inyectando el diccionario `d`.
-  - Se genera de forma física el feed `rss/feed.xml` y `sitemap.xml` conteniendo todas las rutas bilingües localizadas.
+- `postinstall` → compila `packages/i18n/` con `tsc` generando `dist/`.
+- `prebuild` → `generate-rss.ts` ejecuta `GetBlogListUseCase` con `MdxBlogRepository` y escribe `public/rss-es.xml` y `public/rss-en.xml`.
+- `next build` → escanea todos los `.mdx`, construye entidades `Article`/`Project`, resuelve slugs localizados via `SlugRegistry`, pre-genera todas las rutas con `generateStaticParams()`.
+- Salida: carpeta `out/` con HTML + CSS + JS puros.
 
-### 4. Publicación en CDN Global
-- **Actor:** CDN (GitHub Pages)
-- **Acción:** Los archivos estáticos HTML/CSS se distribuyen a nivel global en servidores perimetrales.
+### 4. Despliegue en CDN
+
+- **Actor:** GitHub Actions → GitHub Pages
+- Los archivos de `out/` se publican en la CDN de GitHub Pages.
+- Rama de despliegue: `publish`.
 
 ---
 
-## 🛡️ Risks and Considerations
+## Risks and Considerations
 
-- **Invariante Rígido de Frontmatter**: Si el Autor olvida declarar un metadato obligatorio (ej: `publishedAt`), la compilación estática fallará en tiempo de compilación de GitHub Actions, bloqueando el despliegue automático hacia producción para proteger el sitio final.
-- **Resiliencia ante Claves Faltantes**: Si el post MDX referencia una clave `d.blog.key` inexistente en el JSON, el motor de fallbacks de 5 niveles degradará visualmente el valor a la clave textual cruda, permitiendo que la web renderice sin colapsar ni causar desfases de hidratación visual.
+- **Frontmatter inválido o incompleto**: Si falta un campo obligatorio (ej: `publishedAt`), `MdxBlogRepository` no puede construir la entidad `Article` y el build falla en tiempo de compilación — protegiendo producción.
+- **Slug duplicado**: Si dos posts tienen el mismo `slug.es` o `slug.en`, `SlugRegistry` lanzará error en build-time — no hay colisiones silenciosas en runtime.
+- **`slugs` ausente en frontmatter**: El nombre del archivo actúa como slug universal para todos los idiomas (modo retrocompatible). Agregar `slugs` cuando se quiera URL semánticamente localizada.
 
 ---
 

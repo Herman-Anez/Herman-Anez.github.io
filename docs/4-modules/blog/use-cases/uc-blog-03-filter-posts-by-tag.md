@@ -1,41 +1,53 @@
 # [UC-BLOG-03] Filter Technical Articles by Tag
 
-**Module:** Blog (Technical Writing)  
+**Bounded Context:** Blog  
 **Main Actor:** Visitor  
-**Description:** El visitante hace clic en una etiqueta semántica (ej: TypeScript, MVVM) en el blog para filtrar y explorar artículos temáticos específicos.
+**Application Use Case:** `GetBlogListUseCase` (con parámetro `tag`)  
+**Description:** El visitante filtra el listado de artículos por una etiqueta temática específica.
 
 ---
 
 ## 1. Preconditions
 
-* El visitante está visualizando la página principal de posts (`/[locale]/blog`).
-* Existen artículos indexados con etiquetas válidas en su frontmatter.
+- El visitante está en `/[locale]/blog` (listado completo visible).
+- Existen artículos indexados con etiquetas (`Tag`) válidas en su frontmatter.
 
 ---
 
 ## 2. Main Flow (Happy Path)
 
-1. El visitante hace clic en una etiqueta en el encabezado de filtros o en una tarjeta de artículo.
-2. El sistema actualiza la ruta con la query o parámetro de etiqueta (ej: `/blog?tag=typescript`).
-3. La Vista invoca de manera asíncrona al ViewModel pasándole el filtro: `getBlogListViewModel(locale, selectedTag)`.
-4. El ViewModel filtra la colección de posts, recuperando únicamente aquellos cuyas etiquetas incluyan el tag seleccionado.
-5. El ViewModel devuelve la lista filtrada y aplanada.
-6. La Vista renderiza únicamente las tarjetas asociadas a la tecnología seleccionada, mostrando un indicador de filtro activo.
+1. El visitante hace clic en una etiqueta (ej: "typescript") en una tarjeta o en el panel de filtros.
+2. El cliente actualiza la URL con el query param: `/es/blog?tag=typescript`.
+3. `BlogListView` (client component) detecta el cambio de query param y notifica al `BlogCoordinator` el tag seleccionado.
+4. `BlogCoordinator` instancia `GetBlogListUseCase` con el filtro: `execute(locale, { tag: "typescript" })`.
+5. `GetBlogListUseCase`:
+   - Llama `IBlogRepository.findAll(locale)`.
+   - Filtra entidades `Article` donde `article.tags.some(t => t.value === tag)`.
+   - Mapea a `ArticleSummaryDTO[]` filtrado.
+6. `BlogListViewModel` transforma en `BlogListViewState` con `activeTag: "typescript"`.
+7. `BlogListView` renderiza solo las tarjetas filtradas con indicador de filtro activo.
 
 ---
 
 ## 3. Alternate Flows / Exceptions
 
-### A1 - Filtro sin resultados
-1. El visitante accede a un filtro que no tiene posts publicados asociados.
-2. El ViewModel devuelve una lista vacía.
-3. La Vista muestra de forma amigable un mensaje indicando que no hay posts con esa etiqueta, y ofrece un botón para "Limpiar filtros" volviendo al listado completo.
+### A1 — Filtro sin resultados
+
+1. `GetBlogListUseCase` retorna `[]` tras el filtrado.
+2. `BlogListViewState.isEmpty = true`, `BlogListViewState.activeTag = "typescript"`.
+3. `BlogListView` muestra mensaje amigable: "No hay artículos con esta etiqueta" + botón "Limpiar filtro".
+
+### A2 — Tag inválido o inexistente en URL
+
+1. El query param contiene un valor que no corresponde a ningún `Tag` registrado.
+2. `GetBlogListUseCase` retorna `[]` (sin artículos que coincidan).
+3. Flujo igual a A1.
 
 ---
 
 ## 4. Postconditions
 
-* **Success:** La rejilla semántica de tarjetas se actualiza instantáneamente mostrando solo los posts relevantes bajo la etiqueta técnica deseada.
+- **Success:** El listado se actualiza mostrando solo artículos del tag seleccionado, con la etiqueta activa destacada visualmente.
 
 ---
 
