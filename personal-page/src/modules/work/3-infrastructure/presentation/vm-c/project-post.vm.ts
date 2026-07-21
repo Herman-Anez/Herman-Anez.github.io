@@ -1,4 +1,5 @@
 import { getDictionary, resolveKey } from "@/shared/i18n/dictionaries";
+import { getLocalizedSlug } from "@/shared/routing/PageRouter";
 import { projectRepository } from "../../persistance/projectRepository";
 
 export interface ProjectDetailViewState {
@@ -81,6 +82,6 @@ export const getProjectDetailViewModel = async (
       })) || [],
     link: project.metadata.link,
     content: project.content,
-    currentPath: `/${locale}/work/${project.slug}`,
+    currentPath: `/${locale}/${getLocalizedSlug("work", locale)}/${project.slug}`,
   };
 };

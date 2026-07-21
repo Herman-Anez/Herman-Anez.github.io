@@ -1,0 +1,42 @@
+---
+title: "work.projects.techEvolution.title"
+publishedAt: "2026-05-24"
+summary: "work.projects.techEvolution.summary"
+images:
+  - "/images/projects/project-01/cover-02.jpg"
+slugs:
+  es: "arquitectura-limpia-auth-i18n"
+  en: "clean-architecture-auth-i18n"
+---
+
+# <T es="Evolución Arquitectónica y Diseño Limpio" en="Architectural Evolution and Clean Design" />
+
+## <T es="Contexto y Desafío" en="Context and Challenge" />
+<T
+  es="En mi rol como Responsable Técnico en Interficie Internet Services, lideré la modernización de sistemas heredados de gran volumen hacia arquitecturas más mantenibles y desacopladas. Para demostrar y formalizar este estándar técnico, diseñamos este portafolio bajo una arquitectura limpia que combina DDD (Domain-Driven Design) con el patrón MVVM-C (Model-View-ViewModel-Coordinator)."
+  en="In my role as Technical Lead at Interficie Internet Services, I led the modernization of high-volume legacy systems into more maintainable and decoupled architectures. To demonstrate and formalize this technical standard, we designed this portfolio under a clean architecture that combines DDD (Domain-Driven Design) with the MVVM-C (Model-View-ViewModel-Coordinator) pattern."
+/>
+
+## <T es="Pilares del Diseño Técnico" en="Technical Design Pillars" />
+
+*   **<T es="Arquitectura Hexagonal (Puertos y Adaptadores)" en="Hexagonal Architecture (Ports and Adapters)" />**:
+    <T
+      es="El núcleo de negocio (Domain y Application Use Cases) está totalmente desacoplado de las dependencias externas y del framework Next.js. Las páginas de Next.js actúan meramente como adaptadores de entrada (Thin Shells) que delegan la orquestación a los coordinadores."
+      en="The business core (Domain and Application Use Cases) is completely decoupled from external dependencies and the Next.js framework. Next.js pages act merely as entry adapters (Thin Shells) that delegate orchestration to coordinators."
+    />
+*   **<T es="Separación de Presentación (MVVM-C)" en="Presentation Separation (MVVM-C)" />**:
+    <T
+      es="Los ViewModels son clases TypeScript puras libres de dependencias visuales de React. Las vistas (View Components) son pasivas y reciben un estado estructurado y formateado, simplificando radicalmente las pruebas unitarias y visuales."
+      en="ViewModels are pure TypeScript classes free from visual React dependencies. View Components are passive and receive a structured and formatted state, radically simplifying unit and visual testing."
+    />
+*   **<T es="Extracción de Paquetes Autónomos (`@herman/i18n`)" en="Extraction of Autonomous Packages (`@herman/i18n`)" />**:
+    <T
+      es="Aislamos el motor de internacionalización en un paquete independiente en el monorepo, sincronizado mediante git subtree. Esto permite reutilizar el mismo motor de traducción bilingüe ultra-liviano y con fallbacks tipados en múltiples micro-sitios o futuros proyectos."
+      en="We isolated the internationalization engine in an independent package within the monorepo, synchronized via git subtree. This allows reuse of the same ultra-lightweight bilingual translation engine with typed fallbacks across multiple micro-sites or future projects."
+    />
+
+## <T es="Impacto y Mantenibilidad" en="Impact and Maintainability" />
+<T
+  es="El resultado es una base de código estructurada con responsabilidades rígidas, donde agregar un nuevo idioma o una nueva sección de negocio no requiere reescribir la lógica de presentación ni acoplarse a Next.js. El tiempo de compilación y empaquetado (SSG) se redujo drásticamente al eliminar lógica dinámica redundante en favor de endpoints estáticos pre-generados."
+  en="The result is a structured codebase with rigid responsibilities, where adding a new language or a new business section does not require rewriting presentation logic or coupling to Next.js. Compilation and packaging time (SSG) was drastically reduced by eliminating redundant dynamic logic in favor of pre-generated static endpoints."
+/>

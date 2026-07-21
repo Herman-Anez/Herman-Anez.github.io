@@ -2,6 +2,24 @@
   "work": {
     "label": "Proyectos",
     "title": "Proyectos – Herman Añez",
-    "description": "Diseño y desarrollo de proyectos por Herman Añez"
+    "description": "Diseño y desarrollo de proyectos por Herman Añez",
+    "projects": {
+      "personalPage": {
+        "title": "Página Personal de Herman - Resumen",
+        "summary": "Una descripción general de la arquitectura, diseño y hoja de ruta de mi portafolio."
+      },
+      "personalPageDependencies": {
+        "title": "Dependencias de la Página Personal",
+        "summary": "Revisión detallada de dependencias, sistemas de diseño y librerías utilizadas."
+      },
+      "mediaGenerator": {
+        "title": "Generador de Medios de Alto Rendimiento",
+        "summary": "Diseño de un motor paralelo de compilación de imágenes para optimización de memoria en Node.js."
+      },
+      "techEvolution": {
+        "title": "Evolución Arquitectónica en Interficie",
+        "summary": "Modernización de sistemas empresariales utilizando Arquitectura Hexagonal, DDD y MVVM-C."
+      }
+    }
   }
 }

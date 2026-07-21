@@ -2,23 +2,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Writing about technology...</title>
-    <link>https://your-github-pages-url.com/en/blog</link>
+    <link>https://hermananez.dev/en/blog</link>
     <description>Articles written by Herman Añez</description>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Jul 2026 15:40:31 GMT</lastBuildDate>
-    <atom:link href="https://your-github-pages-url.com/rss-en.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Jul 2026 16:52:33 GMT</lastBuildDate>
+    <atom:link href="https://hermananez.dev/rss-en.xml" rel="self" type="application/rss+xml" />
     <managingEditor>herman.anez.v@gmail.com (Herman Añez)</managingEditor>
     <webMaster>herman.anez.v@gmail.com (Herman Añez)</webMaster>
     <image>
-      <url>https://your-github-pages-url.com/images/avatar.jpg</url>
+      <url>https://hermananez.dev/images/avatar.jpg</url>
       <title>Writing about technology...</title>
-      <link>https://your-github-pages-url.com/en/blog</link>
+      <link>https://hermananez.dev/en/blog</link>
     </image>
     
     <item>
+      <title>React Coding Standards</title>
+      <link>https://hermananez.dev/en/blog/react-coding-standards</link>
+      <guid>https://hermananez.dev/en/blog/react-coding-standards</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Our rules and principles for writing maintainable, clean, and efficient React components.]]></description>
+      
+      <category>Engineering</category>
+      <author>herman.anez.v@gmail.com (Herman Añez)</author>
+    </item>
+    <item>
       <title>Prueba de Sistema i18n</title>
-      <link>https://your-github-pages-url.com/en/blog/test-i18n</link>
-      <guid>https://your-github-pages-url.com/en/blog/test-i18n</guid>
+      <link>https://hermananez.dev/en/blog/test-i18n</link>
+      <guid>https://hermananez.dev/en/blog/test-i18n</guid>
       <pubDate>Sat, 16 May 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[Demostración del componente T híbrido y diccionarios modulares.]]></description>
       
@@ -27,8 +37,8 @@
     </item>
     <item>
       <title>Magic Portfolio: Localization</title>
-      <link>https://your-github-pages-url.com/en/blog/localization</link>
-      <guid>https://your-github-pages-url.com/en/blog/localization</guid>
+      <link>https://hermananez.dev/en/blog/localization</link>
+      <guid>https://hermananez.dev/en/blog/localization</guid>
       <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
       <description><![CDATA[Información sobre la versión localizada de Magic Portfolio.]]></description>
       

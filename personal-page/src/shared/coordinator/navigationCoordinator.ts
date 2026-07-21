@@ -19,7 +19,7 @@ export const ROUTE_MAP = {
 } as const;
 
 export const FEATURED_WORK_SLUG =
-  "automate-design-handovers-with-a-figma-to-code-pipeline" as const;
+  "clean-architecture-auth-i18n" as const;
 
 export function getNavigationCoordinator(locale: string): AppNavigation {
   const base = `/${locale}`;
@@ -29,7 +29,9 @@ export function getNavigationCoordinator(locale: string): AppNavigation {
     work: `${base}/${getLocalizedSlug("work", locale)}`,
     blog: `${base}/${getLocalizedSlug("blog", locale)}`,
     gallery: `${base}/${getLocalizedSlug("gallery", locale)}`,
-    workFeatured: `${base}/${getLocalizedSlug("work", locale)}/${FEATURED_WORK_SLUG}`,
+    workFeatured: `${base}/${getLocalizedSlug("work", locale)}/${
+      locale === "es" ? "arquitectura-limpia-auth-i18n" : FEATURED_WORK_SLUG
+    }`,
     dynamicBases: [`/${getLocalizedSlug("blog", locale)}`, `/${getLocalizedSlug("work", locale)}`],
   };
 }

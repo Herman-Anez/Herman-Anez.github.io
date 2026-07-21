@@ -66,7 +66,7 @@ export function HomeView({
             </RevealFx>
           )}
           <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
-            <Heading wrap="balance" variant="display-strong-l">
+            <Heading as="h1" wrap="balance" variant="display-strong-l">
               <RenderHTML html={home.headline as string} />
             </Heading>
           </RevealFx>
@@ -100,7 +100,7 @@ export function HomeView({
           </RevealFx>
         </Column>
       </Column>
-      {/* <RevealFx translateY="16" delay={0.6}>
+      <RevealFx translateY="16" delay={0.6}>
         <Projects range={[1, 1]} locale={locale} />
       </RevealFx>
       {showBlog && (
@@ -137,7 +137,7 @@ export function HomeView({
           </Row>
         </Column>
       )}
-      <Projects range={[2]} locale={locale} /> */}
+      <Projects range={[2]} locale={locale} />
     </Column>
   );
 }
