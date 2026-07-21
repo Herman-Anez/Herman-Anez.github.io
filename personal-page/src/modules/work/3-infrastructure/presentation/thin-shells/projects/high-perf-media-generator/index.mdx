@@ -1,0 +1,46 @@
+---
+title: "work.projects.mediaGenerator.title"
+publishedAt: "2026-05-20"
+summary: "work.projects.mediaGenerator.summary"
+images:
+  - "/images/projects/project-01/cover-01.jpg"
+slugs:
+  es: "generador-medios-alto-rendimiento"
+  en: "high-perf-media-generator"
+---
+
+# <T es="Generador de Medios de Alto Rendimiento" en="High-Performance Media Generator" />
+
+## <T es="Contexto y Desafío" en="Context and Challenge" />
+<T
+  es="Durante mi etapa como desarrollador principal freelance, diseñé e implementé un motor altamente eficiente para la generación y compilación masiva de contenido multimedia digital (NFTs). El principal desafío residía en optimizar el procesamiento en paralelo para manejar miles de imágenes de alta resolución sin agotar la memoria heap de Node.js."
+  en="During my time as a freelance lead developer, I designed and implemented a highly efficient engine for the massive generation and compilation of digital media assets (NFTs). The main challenge was to optimize parallel processing to handle thousands of high-resolution images without exhausting the Node.js heap memory."
+/>
+
+## <T es="Arquitectura del Sistema" en="System Architecture" />
+<T
+  es="Para resolver los cuellos de botella de rendimiento, implementamos una arquitectura orientada al flujo continuo de datos (streaming) y procesamiento distribuido:"
+  en="To resolve performance bottlenecks, we implemented a data stream-oriented architecture with distributed processing:"
+/>
+
+*   **<T es="Procesamiento en Lotes y Colas" en="Queue and Batch Processing" />**:
+    <T
+      es="Se implementó una cola de prioridades en memoria con un límite estricto de concurrencia para evitar la sobrecarga del CPU."
+      en="An in-memory priority queue was implemented with strict concurrency limits to prevent CPU overload."
+    />
+*   **<T es="Gestión Eficiente de Memoria" en="Efficient Memory Management" />**:
+    <T
+      es="Sustituimos el almacenamiento en memoria temporal por buffers de lectura directa y streams utilizando bibliotecas optimizadas como Sharp.js para transformaciones de imagen ultrarrápidas a nivel nativo (libvips)."
+      en="We replaced temporary memory storage with direct read buffers and streams using optimized libraries like Sharp.js for ultra-fast image transformations at the native level (libvips)."
+    />
+*   **<T es="Validación de Invariantes" en="Invariant Validation" />**:
+    <T
+      es="Cada lote de generación ejecutaba validaciones atómicas de metadatos para asegurar que ningún archivo corrupto fuera exportado al almacenamiento final."
+      en="Each generation batch executed atomic metadata validations to ensure that no corrupted files were exported to the final storage."
+    />
+
+## <T es="Resultados Obtenidos" en="Results" />
+<T
+  es="El motor de procesamiento paralelo logró reducir los tiempos de compilación de medios en un 70%, permitiendo la generación de colecciones completas en menos de 20 minutos con un consumo de memoria constante inferior a 250MB."
+  en="The parallel processing engine successfully reduced media compilation times by 70%, allowing the generation of complete collections in less than 20 minutes with a constant memory footprint of under 250MB."
+/>

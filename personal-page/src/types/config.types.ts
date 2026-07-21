@@ -119,7 +119,6 @@ export type EffectsConfig = {
   };
 };
 
-
 /**
  * Schema data for SEO/meta tags.
  */

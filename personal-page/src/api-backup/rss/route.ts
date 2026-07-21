@@ -1,4 +1,4 @@
-import { getBlogListViewModel } from "@/modules/blog/presentation/viewModels/blogListViewModel";
+import { getBlogListViewModel } from "@/modules/blog/3-infrastructure/presentation/vm-c/blog.vm";
 import { baseURL } from "@/resources";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { NextResponse } from "next/server";

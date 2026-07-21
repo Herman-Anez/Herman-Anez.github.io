@@ -4,7 +4,7 @@
     "title": "About me – Herman Añez",
     "description": "Meet Herman Añez, Computer Engineer",
     "introTitle": "Introduction",
-    "introDescription": "Software Developer with a proven ability to quickly learn and adapt to new technologies. An effective team player and leader, skilled at managing responsibilities autonomously. I specialize in delivering practical and scalable solutions, with solid experience in software architecture and distributed systems. Specialist in Domain-Driven Design (DDD), Clean Architecture, and event-driven systems. Senior full-stack profile with a strong focus on scalability, Zero Trust security, and technical leadership.",
+    "introDescription": "I am a Computer Engineer and Software Architect with over 12 years of experience leading the evolution of complex distributed systems. I specialize in strategic and tactical design using Domain-Driven Design (DDD), Hexagonal Architecture, and event-driven systems, keeping a strong focus on scalability, Zero Trust security, and mentoring technical teams. My core value lies in bridging the gap between business objectives and high-quality, high-performance software architectures.",
     "workTitle": "Professional Experience",
     "workExperiences": [
       {
@@ -57,19 +57,27 @@
     "technicalSkills": [
       {
         "title": "Architecture & Leadership",
-        "description": "DDD, Hexagonal Architecture, Microservices, Outbox Pattern, C4 Model. Stakeholder management, technical mentoring, agile methodologies."
+        "description": "Domain-Driven Design (DDD), Hexagonal Architecture, Microservices, Outbox Pattern, C4 Model. Stakeholder management, technical leadership, team mentoring, and agile methodologies (Scrum, Kanban)."
       },
       {
         "title": "Backend",
-        "description": "Java (Spring Boot), Node.js (TypeScript), PHP (Laravel), RabbitMQ."
+        "description": "Java (Spring Boot), Node.js (TypeScript, NestJS), PHP (Laravel), RabbitMQ, Apache Kafka, gRPC, WebSockets, GraphQL, and RESTful APIs."
       },
       {
         "title": "Frontend",
-        "description": "React, Next.js, TypeScript, Tailwind CSS."
+        "description": "React, Next.js (React Server Components), TypeScript, Tailwind CSS, CSS Modules, Once UI, Zustand, and Redux."
       },
       {
         "title": "Security and Data",
-        "description": "OAuth2/JWT, mTLS, PostgreSQL (RLS), MongoDB, Redis, Supabase, PocketBase."
+        "description": "OAuth2/JWT, mTLS, PostgreSQL (RLS), MongoDB, Redis, Supabase, PocketBase, Firebase, MySQL, SQLite, and Elasticsearch."
+      },
+      {
+        "title": "DevOps & Infrastructure",
+        "description": "Docker, Kubernetes, GitHub Actions (CI/CD), Google Cloud Platform (GCP), Amazon Web Services (AWS), and Infrastructure as Code with Terraform (IaC)."
+      },
+      {
+        "title": "Quality & Testing",
+        "description": "Jest, JUnit, Cypress, TDD/BDD methodologies, static formatters (Biome, ESLint), and code quality tools like SonarQube."
       }
     ]
   }

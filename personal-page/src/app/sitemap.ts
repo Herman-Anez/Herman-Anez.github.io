@@ -1,7 +1,7 @@
 import { baseURL, routes as routesConfig } from "@/resources";
 import { dictionaries } from "@/shared/i18n/dictionaries";
-import { mdxBlogRepository } from "@/modules/blog/infrastructure/mdxRepository";
-import { projectRepository } from "@/modules/work/infrastructure/projectRepository";
+import { mdxBlogRepository } from "@/modules/blog/3-infrastructure/persistance/mdxRepository";
+import { projectRepository } from "@/modules/work/3-infrastructure/persistance/projectRepository";
 import { getLocalizedSlug, SectionPageId } from "@/shared/routing/PageRouter";
 
 export const dynamic = "force-static";

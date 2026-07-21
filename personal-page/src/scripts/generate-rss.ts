@@ -1,11 +1,14 @@
-import { getBlogListViewModel } from "@/modules/blog/presentation/viewModels/blogListViewModel";
+import { getBlogListViewModel } from "@/modules/blog/3-infrastructure/presentation/vm-c/blog.vm";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { getLocalizedSlug } from "@/shared/routing/PageRouter";
 import fs from "fs";
 import path from "path";
 
 // Leemos el baseURL usando fs para evitar importar next/font/google (que es exclusivo del runtime de Next.js)
-const configContent = fs.readFileSync(path.join(process.cwd(), "src/resources/once-ui.config.ts"), "utf-8");
+const configContent = fs.readFileSync(
+  path.join(process.cwd(), "src/resources/once-ui.config.ts"),
+  "utf-8",
+);
 const baseURLMatch = configContent.match(/const baseURL:\s*string\s*=\s*"([^"]+)"/);
 const baseURL = baseURLMatch ? baseURLMatch[1] : "https://your-github-pages-url.com";
 
@@ -65,7 +68,7 @@ async function generateRSSForLocale(locale: string) {
 
   // Escribir el RSS localizado
   fs.writeFileSync(path.join(publicDir, `rss-${locale}.xml`), rssXml);
-  
+
   // Para el idioma por defecto (es), generar también rss.xml en la raíz
   if (locale === "es") {
     fs.writeFileSync(path.join(publicDir, `rss.xml`), rssXml);

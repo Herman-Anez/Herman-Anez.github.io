@@ -1,91 +1,51 @@
-# Magic Portfolio
+# Portafolio y Blog Personal - Herman Añez
 
-Magic Portfolio is a simple, clean, beginner-friendly portfolio template. It supports an MDX-based content system for projects and blog posts, an about / CV page and a gallery.
+Este es el repositorio del sitio web personal, portafolio y blog de **Herman Añez**. El proyecto está construido sobre Next.js y estilizado con Once UI, utilizando una arquitectura desacoplada y robusta para garantizar la generación estática (SSG) y soporte multilingüe completo.
 
-View the demo [here](https://demo.magic-portfolio.com).
+## 🏛️ Arquitectura del Sistema
 
-![Magic Portfolio](public/images/og/home.jpg)
+El proyecto implementa un diseño modular híbrido:
+1. **Domain, Application & Infrastructure (Hexagonal/DDD)**: Estructura interna del núcleo de negocio para los distintos Bounded Contexts (Blog, Portfolio, Profile, Site, Navigation).
+2. **MVVM-C (Model-View-ViewModel-Coordinator)**: Patrón de diseño para la capa de presentación. Los Coordinadores controlan el flujo del App Router, interactúan con los casos de uso del dominio, inyectan datos a los ViewModels y delegan el renderizado a las vistas puras (Thin-Shells).
+3. **i18n Desacoplado**: Lógica de traducción encapsulada en el paquete de espacio de trabajo interno `@herman/i18n` (sincronizado a su propio repositorio vía git subtree).
 
-## Getting started
+---
 
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
+## 🛠️ Comandos de Desarrollo
 
-**2. Install dependencies**
-```
-npm install
-```
+Ejecuta todos los comandos desde la carpeta `personal-page/`:
 
-**3. Run dev server**
-```
+```bash
+# Iniciar el servidor de desarrollo local (limpia caché de Next.js automáticamente)
 npm run dev
+
+# Compilar el sitio estático (SSG)
+npm run build
+
+# Formatear el código con Biome
+npm run biome-write
+
+# Ejecutar las validaciones del sistema i18n (compara diccionarios es/en y corre tests unitarios)
+npm run test
+
+# Actualizar el grafo de conocimiento del proyecto
+npm run graphify:update
 ```
 
-**4. Edit config**
-```
-src/resources/once-ui.config.js
-```
+---
 
-**5. Edit content**
-```
-src/resources/content.js
-```
+## 🔒 Restricciones Técnicas Importantes
 
-**6. Create blog posts / projects**
-```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
-```
+* **Compilación Estática (`output: 'export'`)**: El sitio se distribuye como archivos HTML/CSS/JS estáticos puros para ser alojados en GitHub Pages u otros hostings estáticos. No hay servidor de Node.js en producción.
+* **Sin Rutas de API Dinámicas en Producción**: Toda la lógica debe ser cliente-side. La protección de accesos se realiza en `RouteGuard.tsx` validando contraseñas en el navegador contra variables de entorno locales.
+* **Urls Localizadas y Slugs**: Cada sección y página dinámica de MDX debe registrarse en `PageRouter.ts` y `SlugRegistry.ts` para posibilitar la navegación multilíngüe síncrona sin parpadeos.
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+---
 
-## Documentation
+## 📄 Contenido (MDX)
 
-Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfolio/quick-start)
+El contenido dinámico en Markdown se encuentra en las siguientes rutas dentro de `personal-page/src/modules/`:
+* **Artículos de Blog**: `src/modules/blog/3-infrastructure/presentation/thin-shells/posts/`
+* **Proyectos del Portafolio**: `src/modules/work/3-infrastructure/presentation/thin-shells/projects/`
 
-## Features
-
-### Once UI
-- All tokens, components & features of [Once UI](https://once-ui.com)
-
-### SEO
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
-
-### Design
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
-
-### Content
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
-
-### Localization
-- A localized, earlier version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
-
-## Creators
-
-Lorant One: [Threads](https://www.threads.net/@lorant.one) / [LinkedIn](https://www.linkedin.com/in/lorant-one/)
-
-## Get involved
-
-- Join the Design Engineers Club on [Discord](https://discord.com/invite/5EyAQ4eNdS) and share your project with us!
-- Deployed your docs? Share it on the [Once UI Hub](https://once-ui.com/hub) too! We feature our favorite apps on our landing page.
-
-## License
-
-Distributed under the CC BY-NC 4.0 License.
-- Attribution is required.
-- Commercial usage is not allowed.
-- You can extend the license to [Dopler CC](https://dopler.app/license) by purchasing a [Once UI Pro](https://once-ui.com/pricing) license.
-
-See `LICENSE.txt` for more information.
-
-## Deploy with Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+Cada archivo `.mdx` debe incluir obligatoriamente el campo `slugs: { es: "...", en: "..." }` en su frontmatter para registrar los enlaces localizados de forma automática en el build.

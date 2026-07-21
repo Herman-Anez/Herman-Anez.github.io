@@ -1,0 +1,105 @@
+---
+title: "blog.posts.reactCodingStandards.title"
+publishedAt: "2026-07-21"
+summary: "blog.posts.reactCodingStandards.summary"
+tag: "Engineering"
+slugs:
+  es: "estandares-programacion-react"
+  en: "react-coding-standards"
+---
+
+# <T es="Estándares de Programación en React" en="React Coding Standards" />
+
+<T
+  es="En el desarrollo de software profesional, la consistencia, la mantenibilidad y la portabilidad son pilares fundamentales. A continuación, detallo las reglas y convenciones arquitectónicas que sigo para escribir componentes React y estructurar aplicaciones en Next.js."
+  en="In professional software development, consistency, maintainability, and portability are core pillars. Below, I detail the rules and architectural conventions I follow to write React components and structure Next.js applications."
+/>
+
+---
+
+## 1. <T es="Desacoplamiento Estricto de Lógica (MVVM-C)" en="Strict Logic Decoupling (MVVM-C)" />
+
+<T
+  es="Los componentes React deben ser puramente pasivos (Thin Shells / Dumb Views). Toda la lógica de negocio, formateo de datos, carga de traducciones e interacciones con repositorios deben delegarse a ViewModels y Coordinators:"
+  en="React components must be purely passive (Thin Shells / Dumb Views). All business logic, data formatting, translation loading, and repository interactions must be delegated to ViewModels and Coordinators:"
+/>
+
+*   **<T es="Vistas Pasivas" en="Passive Views" />**:
+    <T
+      es="Los componentes visuales solo reciben un estado formateado y estructurado (`ViewState`). No calculan fechas ni procesan variables de entorno en su interior."
+      en="Visual components only receive a formatted and structured state (`ViewState`). They do not calculate dates or process environment variables internally."
+    />
+*   **<T es="ViewModels Puros" en="Pure ViewModels" />**:
+    <T
+      es="Clases TypeScript estándar sin importación de dependencias React ni JSX. Esto simplifica radicalmente la escritura de pruebas unitarias."
+      en="Standard TypeScript classes without importing React dependencies or JSX. This radically simplifies writing unit tests."
+    />
+
+```tsx
+// ❌ Evitar lógica directa en componentes
+const BlogPost = () => {
+  const { slug } = useParams();
+  const [data, setData] = useState(null);
+  // ... lógica pesada de formateo
+}
+
+// ✅ Correcto: Vista pasiva delegando al Coordinator
+export default async function BlogPostPage({ params }) {
+  const { locale, slug } = await params;
+  const coordinator = await getBlogDetailCoordinator(slug, locale);
+  return <BlogPostView state={coordinator.state} />;
+}
+```
+
+---
+
+## 2. <T es="Simetría de Internacionalización (i18n)" en="Internationalization Symmetry (i18n)" />
+
+<T
+  es="Cualquier texto visible al usuario debe estar preparado para soportar múltiples idiomas. No permitimos strings duros o estáticos en el marcado:"
+  en="Any text visible to the user must be prepared to support multiple languages. We do not allow hardcoded or static strings in the markup:"
+/>
+
+*   **<T es="Componente `<T />`" en="`<T />` Component" />**:
+    <T
+      es="Utilizamos el componente de traducción con claves tipadas o fallbacks inline para textos de interfaz."
+      en="We use the translation component with typed keys or inline fallbacks for UI text."
+    />
+*   **<T es="MDX Bilingüe" en="Bilingual MDX" />**:
+    <T
+      es="Dentro de los contenidos enriquecidos en Markdown, usamos las etiquetas `<T es='...' en='...' />` para mantener ambos idiomas en un único origen de verdad."
+      en="Within rich Markdown contents, we use `<T es='...' en='...' />` tags to keep both languages in a single source of truth."
+    />
+
+---
+
+## 3. <T es="Enrutamiento Localizado Semántico" en="Semantic Localized Routing" />
+
+<T
+  es="Queda estrictamente prohibido hardcodear prefijos de ruta (como `/work/` o `/blog/`) en enlaces internos. Para garantizar que los motores de búsqueda no penalicen el sitio y evitar errores 404 al cambiar de idioma, resolvemos los paths de forma dinámica:"
+  en="It is strictly prohibited to hardcode route prefixes (such as `/work/` or `/blog/`) in internal links. To ensure search engines do not penalize the site and to prevent 404 errors when switching languages, we resolve paths dynamically:"
+/>
+
+```typescript
+// ❌ Incorrecto
+const href = `/${locale}/work/${projectSlug}`;
+
+// ✅ Correcto
+import { getLocalizedSlug } from "@/shared/routing/PageRouter";
+const href = `/${locale}/${getLocalizedSlug("work", locale)}/${projectSlug}`;
+```
+
+---
+
+## 4. <T es="Calidad de Código y Estilo" en="Code Quality and Styling" />
+
+*   **<T es="Formateo con Biome" en="Formatting with Biome" />**:
+    <T
+      es="Usamos Biome para análisis estático (linter) y formateo ultra-rápido de código en TypeScript y JSON."
+      en="We use Biome for static analysis (linter) and ultra-fast code formatting in TypeScript and JSON."
+    />
+*   **<T es="Pruebas de Diccionarios" en="Dictionary Verification" />**:
+    <T
+      es="Ejecutamos validaciones automatizadas pre-commit (`validate-i18n.ts`) para certificar que no existan desajustes de claves de traducción entre los diccionarios."
+      en="We run automated pre-commit validations (`validate-i18n.ts`) to certify that there are no translation key mismatches between dictionaries."
+    />

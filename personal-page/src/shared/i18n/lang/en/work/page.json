@@ -2,6 +2,24 @@
   "work": {
     "label": "Work",
     "title": "Projects – Herman Añez",
-    "description": "Design and development projects by Herman Añez"
+    "description": "Design and development projects by Herman Añez",
+    "projects": {
+      "personalPage": {
+        "title": "Herman's Personal Page - Overview",
+        "summary": "An overview of the architecture, design and roadmap of my portfolio."
+      },
+      "personalPageDependencies": {
+        "title": "Personal Page Dependencies",
+        "summary": "Detailed review of dependencies, design systems, and libraries used."
+      },
+      "mediaGenerator": {
+        "title": "High-Performance Media Generator",
+        "summary": "Design of a parallel image compilation engine for memory optimization in Node.js."
+      },
+      "techEvolution": {
+        "title": "Architectural Evolution at Interficie",
+        "summary": "Modernization of enterprise business systems using Hexagonal Architecture, DDD, and MVVM-C."
+      }
+    }
   }
 }

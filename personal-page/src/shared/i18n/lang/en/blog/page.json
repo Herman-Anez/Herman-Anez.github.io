@@ -6,6 +6,12 @@
     "test": {
       "title": "Title from JSON",
       "description": "This content was successfully extracted from the centralized dictionary."
+    },
+    "posts": {
+      "reactCodingStandards": {
+        "title": "React Coding Standards",
+        "summary": "Our rules and principles for writing maintainable, clean, and efficient React components."
+      }
     }
   }
 }

@@ -13,7 +13,7 @@ import {
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
 // TODO: Update to real github pages url when available
-const baseURL: string = "https://your-github-pages-url.com";
+const baseURL: string = "https://hermananez.dev";
 
 const routes: RoutesConfig = {
   "/": true,
@@ -31,9 +31,7 @@ const display: DisplayConfig = {
 
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
-const protectedRoutes: ProtectedRoutesConfig = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
-};
+const protectedRoutes: ProtectedRoutesConfig = {};
 
 // Import and set font for each variant
 import { Geist } from "next/font/google";
@@ -139,22 +137,21 @@ const effects: EffectsConfig = {
   },
 };
 
-
 //TODO: revisar commit de este cambio y verificar funcion de esta constante
 // default schema data
 const schema: SchemaConfig = {
   logo: "",
-  type: "Organization",
-  name: "Once UI",
-  description: "",
-  email: "lorant@once-ui.com",
+  type: "Person",
+  name: "Herman Añez",
+  description: "Portafolio y blog personal de Herman Añez, Ingeniero Informático y Arquitecto de Software",
+  email: "herman.anez.v@gmail.com",
 };
 
 // social links
 const sameAs: SameAsConfig = {
-  threads: "https://www.threads.com/@once_ui",
-  linkedin: "https://www.linkedin.com/company/once-ui/",
-  discord: "https://discord.com/invite/5EyAQ4eNdS",
+  threads: "",
+  linkedin: "https://www.linkedin.com/in/herman-anez/",
+  discord: "",
 };
 
 // social sharing configuration for blog posts
