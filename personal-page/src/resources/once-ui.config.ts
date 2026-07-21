@@ -139,7 +139,6 @@ const effects: EffectsConfig = {
   },
 };
 
-
 //TODO: revisar commit de este cambio y verificar funcion de esta constante
 // default schema data
 const schema: SchemaConfig = {

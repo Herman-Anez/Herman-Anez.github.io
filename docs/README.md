@@ -18,6 +18,7 @@
 
 ### 2. Estándares
 - [Convenciones de Código](./2-standards/coding-conventions.md) — Naming, capas, Biome, TypeScript
+- [Estructura de Carpetas (`src/`)](./2-standards/project-folder-structure.md) — Árbol completo con responsabilidades por directorio
 - [Flujo Git y CI/CD](./2-standards/git-workflow.md) — Branches, commits, Husky, GitHub Actions
 - [Git Subtree — Paquetes Internos](./2-standards/git-subtree-packages.md) — Setup, sync y workflow diario con repos externos
 - [Guía de Documentación](./2-standards/documentation-guidelines.md) — Cómo escribir docs en este proyecto

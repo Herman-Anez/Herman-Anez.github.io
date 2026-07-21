@@ -1,6 +1,9 @@
 {
-  "name": "@once-ui-system/magic-portfolio",
+  "name": "herman-personal-blog",
   "version": "2.3.0",
+  "description": "Portafolio y Blog Personal de Herman Añez",
+  "author": "Herman Añez <herman.anez.v@gmail.com>",
+
   "scripts": {
     "dev": "rm -fr ./personal-page/.next && next dev",
     "export": "next export",
@@ -12,9 +15,14 @@
     "test:i18n-unit": "npx tsx src/utils/test-i18n.ts",
     "test": "npm run test:i18n && npm run test:i18n-unit",
     "prebuild": "npx tsx src/scripts/generate-rss.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "npm run build --prefix packages/i18n",
+    "graphify:query": "graphify query --graph ../graphify-out/graph.json",
+    "graphify:update": "graphify update ..",
+    "graphify:viz": "graphify export html --graph ../graphify-out/graph.json"
   },
   "dependencies": {
+    "@herman/i18n": "file:./packages/i18n",
     "@mdx-js/loader": "^3.1.0",
     "@next/mdx": "^16.0.10",
     "@once-ui-system/core": "latest",

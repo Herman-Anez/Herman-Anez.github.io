@@ -18,7 +18,8 @@ export const ROUTE_MAP = {
   gallery: "/gallery",
 } as const;
 
-export const FEATURED_WORK_SLUG = "automate-design-handovers-with-a-figma-to-code-pipeline" as const;
+export const FEATURED_WORK_SLUG =
+  "automate-design-handovers-with-a-figma-to-code-pipeline" as const;
 
 export function getNavigationCoordinator(locale: string): AppNavigation {
   const base = `/${locale}`;
