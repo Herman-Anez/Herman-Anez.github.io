@@ -53,7 +53,10 @@ jobs:
         working-directory: personal-page
 
       - name: Build local packages
-        run: pnpm -C packages/i18n run build
+        run: |
+          pnpm -C packages/i18n run build
+          mkdir -p node_modules/@herman/i18n/dist
+          cp -r packages/i18n/dist/* node_modules/@herman/i18n/dist/
         working-directory: personal-page
 
       - name: Build with Next.js (triggers generate-rss.ts & next build)
