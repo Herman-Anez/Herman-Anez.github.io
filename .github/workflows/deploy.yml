@@ -26,12 +26,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 11.6.0
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
-          cache-dependency-path: personal-page/package.json
+          cache: "pnpm"
+          cache-dependency-path: personal-page/pnpm-lock.yaml
 
       # Optimiza los tiempos de build subsiguientes cacheando el compilador de Next.js
       - name: Restore Next.js build cache
@@ -39,19 +44,19 @@ jobs:
         with:
           path: |
             personal-page/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('personal-page/package-lock.json') }}-${{ hashFiles('personal-page/src/**/*.[jt]s', 'personal-page/src/**/*.[jt]sx', 'personal-page/src/**/*.mdx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('personal-page/pnpm-lock.yaml') }}-${{ hashFiles('personal-page/src/**/*.[jt]s', 'personal-page/src/**/*.[jt]sx', 'personal-page/src/**/*.mdx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('personal-page/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('personal-page/pnpm-lock.yaml') }}-
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
         working-directory: personal-page
 
       - name: Build with Next.js (triggers generate-rss.ts & next build)
         env:
           NEXT_PUBLIC_PAGE_ACCESS_PASSWORD: ${{ vars.NEXT_PUBLIC_PAGE_ACCESS_PASSWORD }}
           NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
-        run: npm run build
+        run: pnpm run build
         working-directory: personal-page
 
       - name: Setup Pages
