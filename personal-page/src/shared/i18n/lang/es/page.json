@@ -2,14 +2,8 @@
   "home": {
     "label": "Inicio",
     "title": "Portafolio de Herman Añez",
-<<<<<<< HEAD
-    "description": "Portafolio web mostrando el trabajo de Herman Añez como Ingeniero Informático",
-    "headline": "Ingeniero Informático con +12 años de experiencia en arquitectura de software y sistemas distribuidos",
-    "subline": "Especialista en <strong>DDD, Clean Architecture y sistemas event-driven</strong>.<br />Perfil full stack senior con fuerte enfoque en escalabilidad, seguridad Zero Trust y liderazgo técnico."
-=======
     "description": "Portafolio web mostrando el trabajo de Herman Añez como Ingeniero de Software",
     "headline": "Ingeniero de Software y Arquitecto de Sistemas con +12 años de trayectoria",
     "subline": "Especialista en <strong>DDD, Clean Architecture y sistemas orientados a eventos</strong>.<br />Perfil senior full-stack enfocado en escalabilidad, seguridad Zero Trust y liderazgo técnico. Capacidad demostrada para liderar equipos y traducir necesidades complejas de negocio en arquitecturas de alto rendimiento."
->>>>>>> master
   }
 }
