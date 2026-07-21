@@ -4,23 +4,25 @@ export class SlugRegistry {
 
   register(pageId: string, slugs?: Record<string, string>) {
     const locales = ["es", "en"];
-    locales.forEach(locale => {
+    locales.forEach((locale) => {
       const slug = slugs?.[locale] ?? pageId; // fallback = pageId canónico
-      
+
       if (!this.localeMap[locale]) {
         this.localeMap[locale] = new Map();
       }
-      
+
       if (this.localeMap[locale].has(slug) && this.localeMap[locale].get(slug) !== pageId) {
-        console.warn(`[SlugRegistry] Colisión: slug "${slug}" (${locale}) ya registrado para el pageId "${this.localeMap[locale].get(slug)}". Ignorando registro para "${pageId}".`);
+        console.warn(
+          `[SlugRegistry] Colisión: slug "${slug}" (${locale}) ya registrado para el pageId "${this.localeMap[locale].get(slug)}". Ignorando registro para "${pageId}".`,
+        );
       } else {
         this.localeMap[locale].set(slug, pageId);
       }
     });
-    
-    this.idMap.set(pageId, { 
-      es: slugs?.es ?? pageId, 
-      en: slugs?.en ?? pageId 
+
+    this.idMap.set(pageId, {
+      es: slugs?.es ?? pageId,
+      en: slugs?.en ?? pageId,
     });
   }
 

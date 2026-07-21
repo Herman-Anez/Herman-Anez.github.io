@@ -43,11 +43,7 @@ type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
  * - Ya localizados (/es/...): sin doble prefijo (REQ-06)
  * Nunca incluye el basePath de Next.js (REQ-01).
  */
-function resolveHref(
-  href: string,
-  locale?: string,
-  currentPath?: string
-): string {
+function resolveHref(href: string, locale?: string, currentPath?: string): string {
   // 1. Fragmentos — sin tocar
   if (href.startsWith("#")) return href;
 
@@ -77,7 +73,11 @@ function createCustomLink(locale?: string, currentPath?: string) {
     const resolved = resolveHref(href, locale, currentPath);
 
     if (resolved.startsWith("#")) {
-      return <a href={resolved} {...props}>{children}</a>;
+      return (
+        <a href={resolved} {...props}>
+          {children}
+        </a>
+      );
     }
 
     if (resolved.startsWith("http") || resolved.startsWith("mailto:")) {

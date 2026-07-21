@@ -1,0 +1,16 @@
+{
+  "name": "Herman Anez - Personal Blog",
+  "short_name": "Herman Blog",
+  "description": "Personal portfolio and blog of Herman Anez, built with Next.js and Once UI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e0e10",
+  "theme_color": "#0e0e10",
+  "icons": [
+    {
+      "src": "/images/avatar.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -76,8 +76,12 @@ const home: Home = {
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I'm Selene, a design engineer at{" "}
+      <Text as="span" size="xl" weight="strong">
+        ONCE UI
+      </Text>
+      , where I craft intuitive <br /> user experiences. After hours, I build my own projects.
+    </>
   ),
 };
 
@@ -174,9 +178,7 @@ const about: About = {
     skills: [
       {
         title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
+        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
         tags: [
           {
             name: "Figma",
@@ -201,9 +203,7 @@ const about: About = {
       },
       {
         title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
+        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
         tags: [
           {
             name: "JavaScript",
