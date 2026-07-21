@@ -3,7 +3,6 @@
   "version": "2.3.0",
   "description": "Portafolio y Blog Personal de Herman Añez",
   "author": "Herman Añez <herman.anez.v@gmail.com>",
-
   "scripts": {
     "dev": "rm -rf .next && next dev --webpack",
     "export": "next export",
@@ -25,7 +24,7 @@
     "@herman/i18n": "file:./packages/i18n",
     "@mdx-js/loader": "^3.1.0",
     "@next/mdx": "^16.0.10",
-    "@once-ui-system/core": "latest",
+    "@once-ui-system/core": "^1.7.12",
     "classnames": "^2.5.1",
     "cookie": "^1.0.2",
     "gray-matter": "^4.0.3",
