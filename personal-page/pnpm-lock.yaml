@@ -18,7 +18,7 @@ importers:
         specifier: ^16.0.10
         version: 16.2.6(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.2.15)(react@19.2.6))
       '@once-ui-system/core':
-        specifier: latest
+        specifier: ^1.7.12
         version: 1.7.12(@types/react@19.2.15)(next@16.2.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(react-dom@19.2.6(react@19.2.6))(react-is@19.2.7)(react@19.2.6)(redux@5.0.1)(sass@1.100.0)(sharp@0.34.5)
       classnames:
         specifier: ^2.5.1
